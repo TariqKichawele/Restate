@@ -38,7 +38,7 @@ export async function login() {
         }
 
         const url = new URL(browserResult.url);
-        
+
         const secret = url.searchParams.get("secret")?.toString();
         const userId = url.searchParams.get("userId")?.toString();
         if (!secret || !userId) throw new Error("Missing secret or userId");
@@ -50,5 +50,34 @@ export async function login() {
     } catch (error) {
         console.error(error);
         return false;
+    }
+}
+
+export async function logout() {
+    try {
+        const res = await account.deleteSession("current");
+        return res;
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+
+export async function getCurrentUser() {
+    try {
+        const res = await account.get();
+        if (res.$id) {
+            const userAvatar = avatar.getInitials(res.name);
+
+            return {
+                ...res,
+                avatar: userAvatar.toString(),
+            }
+        };
+
+        return null;
+    } catch (error) {
+        console.log(error);
+        return null;
     }
 }
