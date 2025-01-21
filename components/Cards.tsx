@@ -60,7 +60,7 @@ export const Card = ({ item, onPress }: Props) => {
         <View className="flex flex-row items-center absolute px-2 top-5 right-5 bg-white/90 p-1 rounded-full z-50">
             <Image source={icons.star} className="size-2.5" />
             <Text className="text-xs font-rubik-bold text-primary-300 ml-0.5">
-                {5}
+                5
             </Text>
         </View>
 
