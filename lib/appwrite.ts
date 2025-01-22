@@ -104,7 +104,9 @@ export async function getLatestProperties() {
 }
 
 export async function getProperties({ 
-    filter, query, limit 
+    filter, 
+    query, 
+    limit 
 }: { 
     filter: string, 
     query: string, 
@@ -143,7 +145,7 @@ export async function getProperties({
     }
 }
 
-export async function getPropertyById(id: string) {
+export async function getPropertyById({ id }: { id: string }) {
     try {
         const res = await databases.getDocument(
             config.databaseId!,
